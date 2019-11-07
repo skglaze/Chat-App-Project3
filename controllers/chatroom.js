@@ -16,12 +16,12 @@ roomRouter.get('/:roomId', (req, res) => {
     })
 })
 
-roomRouter.get('/opponents/:opponentId', (req, res) => {
-    opponentApi.getOneOpponent(req.params.opponentId)
-        .then((opponent) => {
-            gameApi.getAllGamesByOpponentId(req.params.opponentId)
-                .then((opponentGames) => {
-                    res.render('opponentViews/opponent', { opponent, opponentGames })
+roomRouter.get('/:roomId', (req, res) => {
+    roomApi.getOneOpponent(req.params.roomId)
+        .then((room) => {
+            messageApi.getAllMessagesByRoomId(req.params.roomId)
+                .then((roomMessages) => {
+                    res.json(room, roomMessages)
                 })
         })
 })
