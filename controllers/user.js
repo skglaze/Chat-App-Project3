@@ -1,33 +1,33 @@
 const express = require('express')
-const router = express.Router()
+const userRouter = express.Router()
 
 const userApi = require('../models/user.js')
 
-router.get('/', (req, res) => {
+userRouter.get('/', (req, res) => {
     userApi.getAllUsers().then((users) => {
         res.json(users)
     })
 })
 
-router.get('/:userId', (req, res) => {
+userRouter.get('/:userId', (req, res) => {
     userApi.getOneUser(req.params.userId).then((user) => {
         res.json(user)
     })
 })
 
-router.post('/', (req, res) => {
+userRouter.post('/', (req, res) => {
     userApi.addNewUser(req.body).then((newUser) => {
         res.json(newUser)
     })
 })
 
-router.put('/:userId', (req, res) => {
+userRouter.put('/:userId', (req, res) => {
     userApi.updateUser(req.params.userId, req.body).then((updatedUser) => {
         res.json(updatedUser)
     })
 })
 
-router.delete('/:userId', (req, res) => {
+userRouter.delete('/:userId', (req, res) => {
     userApi.deleteUser(req.params.userId)
         .then((deletedUser) => {
             res.json(deletedUser)

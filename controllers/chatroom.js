@@ -1,33 +1,44 @@
 const express = require('express')
-const router = express.Router()
+const roomRouter = express.Router()
 
 const roomApi = require('../models/chatroom.js')
+const messageApi = require('../models/message')
 
-router.get('/', (req, res) => {
+roomRouter.get('/', (req, res) => {
     roomApi.getAllRooms().then((rooms) => {
         res.json(rooms)
     })
 })
 
-router.get('/:roomId', (req, res) => {
+roomRouter.get('/:roomId', (req, res) => {
     roomApi.getOneRoom(req.params.roomId).then((room) => {
         res.json(room)
     })
 })
 
-router.post('/', (req, res) => {
+roomRouter.get('/opponents/:opponentId', (req, res) => {
+    opponentApi.getOneOpponent(req.params.opponentId)
+        .then((opponent) => {
+            gameApi.getAllGamesByOpponentId(req.params.opponentId)
+                .then((opponentGames) => {
+                    res.render('opponentViews/opponent', { opponent, opponentGames })
+                })
+        })
+})
+
+roomRouter.post('/', (req, res) => {
     roomApi.addNewRoom(req.body).then((newRoom) => {
         res.json(newRoom)
     })
 })
 
-router.put('/:roomId', (req, res) => {
+roomRouter.put('/:roomId', (req, res) => {
     roomApi.updateRoom(req.params.roomId, req.body).then((updatedRoom) => {
         res.json(updatedRoom)
     })
 })
 
-router.delete('/:roomId', (req, res) => {
+roomRouter.delete('/:roomId', (req, res) => {
     roomApi.deleteRoom(req.params.roomId)
         .then((deletedRoom) => {
             res.json(deletedRoom)
