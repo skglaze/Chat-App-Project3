@@ -6,7 +6,7 @@ const UserSchema = new mongoose.Schema({
     userName: String
 })
 
-const UserCollection = mongoose.model('USer', UserSchema)
+const UserCollection = mongoose.model('User', UserSchema)
 
 const getAllUsers = () => {
     return UserCollection.find({})
