@@ -13,6 +13,7 @@ app.use(express.static(`${__dirname}/public`))
 
 app.use('/api/users', userRouter)
 app.use('/api/rooms', roomRouter)
+app.use('/api/messages', messageRouter)
 
 app.get('/*', (req, res) => {
     res.sendFile(`${__dirname}/client/build/index.html`)
