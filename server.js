@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 
 const { userRouter } = require('./controllers/user.js')
+const { roomRouter } = require('./controllers/room')
+const { messageRouter } = require('./controllers/message')
 
 app.use(express.urlencoded({ extended: true }))
 

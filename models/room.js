@@ -2,12 +2,12 @@ const mongoose = require('./connection.js')
 
 global.sampleModel = [];
 
-const ChatRoomSchema = new mongoose.Schema({
+const RoomSchema = new mongoose.Schema({
     name: String,
     password: String
 })
 
-const RoomCollection = mongoose.model('Room', ChatRoomSchema)
+const RoomCollection = mongoose.model('Room', RoomSchema)
 
 const getAllRooms = () => {
     return RoomCollection.find({})

@@ -1,7 +1,7 @@
 const express = require('express')
 const roomRouter = express.Router()
 
-const roomApi = require('../models/chatroom.js')
+const roomApi = require('../models/room.js')
 const messageApi = require('../models/message')
 
 roomRouter.get('/', (req, res) => {
@@ -10,20 +10,18 @@ roomRouter.get('/', (req, res) => {
     })
 })
 
-roomRouter.get('/:roomId', (req, res) => {
-    roomApi.getOneRoom(req.params.roomId).then((room) => {
-        res.json(room)
-    })
-})
+// roomRouter.get('/:roomId', (req, res) => {
+//     roomApi.getOneRoom(req.params.roomId).then((room) => {
+//         res.json(room)
+//     })
+// })
 
 roomRouter.get('/:roomId', (req, res) => {
-    roomApi.getOneOpponent(req.params.roomId)
-        .then((room) => {
-            messageApi.getAllMessagesByRoomId(req.params.roomId)
-                .then((roomMessages) => {
-                    res.json(room, roomMessages)
-                })
+    messageApi.getAllMessagesByRoomId(req.params.roomId)
+        .then((roomMessages) => {
+            res.json(roomMessages)
         })
+
 })
 
 roomRouter.post('/', (req, res) => {
@@ -46,5 +44,5 @@ roomRouter.delete('/:roomId', (req, res) => {
 })
 
 module.exports = {
-    roomRouter: roomRouter
+    roomRouter
 }
