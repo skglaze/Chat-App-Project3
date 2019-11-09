@@ -14,11 +14,11 @@ export default class UserPage extends Component {
     }
 
     componentDidMount() {
-        axios.get(`/api/users/${this.props.match.params.userId}`)
+        Axios.get(`/api/users/${this.props.match.params.userId}`)
             .then((response) => {
                 this.setState({ user: response.data })
             })
-        axios.get('/api/rooms')
+        Axios.get('/api/rooms')
             .then((response) => {
                 this.setState({ roomList: response.data })
             })
@@ -37,8 +37,8 @@ export default class UserPage extends Component {
 
     handleRoomChange = (event) => {
         const copyNewRoom = { ...this.state.newRoom }
-        copyNewUser[event.target.name] = event.target.value
-        this.setState({ newUser: copyNewUser })
+        copyNewRoom[event.target.name] = event.target.value
+        this.setState({ newUser: copyNewRoom })
     }
 
     checkRoomNameAndPassword = (roomName, roomPassword) => {
@@ -54,7 +54,7 @@ export default class UserPage extends Component {
     render() {
         return (
             <div>
-
+                My Man
             </div>
         )
     }
