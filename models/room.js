@@ -4,7 +4,7 @@ global.sampleModel = [];
 
 const RoomSchema = new mongoose.Schema({
     name: String,
-    password: String
+    password: String,
 })
 
 const RoomCollection = mongoose.model('Room', RoomSchema)

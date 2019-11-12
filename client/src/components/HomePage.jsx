@@ -23,8 +23,6 @@ export default class HomePage extends Component {
             .then(() => {
                 const plzRedirect = true
                 this.setState({ redirect: plzRedirect })
-                console.log(this.state.newUser.userName)
-                console.log(this.state.redirect)
             })
     }
 
@@ -33,16 +31,6 @@ export default class HomePage extends Component {
             return <Redirect to={`/${this.state.newUser.userName}`} />
         }
     }
-
-    // loopThroughUsers = (currentUser, userId, redirect) => {
-    //     for (let i = 0; i < this.state.userList.length; i++) {
-    //         if (this.state.userList[i].userName === currentUser.userName) {
-    //             userId = { ...this.state.userList[i].userId }
-    //             redirect = !{ ...this.state.redirect }
-    //             this.setState({ redirect })
-    //         }
-    //     }
-    // }
 
     handleNewUserChange = (event) => {
         const copyNewUser = { ...this.state.newUser }

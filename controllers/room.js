@@ -10,18 +10,20 @@ roomRouter.get('/', (req, res) => {
     })
 })
 
-// roomRouter.get('/:roomId', (req, res) => {
-//     roomApi.getOneRoom(req.params.roomId).then((room) => {
-//         res.json(room)
-//     })
-// })
+roomRouter.get('/messages/:roomId', (req, res) => {
+    roomApi.getOneRoom(req.params.roomId)
+        .then((room) => {
+            messageApi.getAllMessagesByRoomId(req.params.roomId)
+                .then((roomMessages) => {
+                    res.json(roomMessages)
+                })
+        })
+})
 
 roomRouter.get('/:roomId', (req, res) => {
-    messageApi.getAllMessagesByRoomId(req.params.roomId)
-        .then((roomMessages) => {
-            res.json(roomMessages)
-        })
-
+    roomApi.getOneRoom(req.params.roomId).then((room) => {
+        res.json(room)
+    })
 })
 
 roomRouter.post('/', (req, res) => {

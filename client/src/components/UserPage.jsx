@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
+import { Redirect } from 'react-router-dom'
 
 export default class UserPage extends Component {
     state = {
         user: {},
-        newRoomForm: "true",
-        oldRoomSignIn: "false",
+        newRoomForm: true,
+        existingRoomForm: false,
         newRoom: {
             name: '',
             password: ''
         },
-        roomList: []
+        roomList: [],
+        redirect: false
     }
 
     componentDidMount() {
@@ -36,26 +38,100 @@ export default class UserPage extends Component {
         this.setState({ newRoom: copyNewRoom })
     }
 
-    handleRoomChange = (event) => {
-        const copyNewRoom = { ...this.state.newRoom }
-        copyNewRoom[event.target.name] = event.target.value
-        this.setState({ newUser: copyNewRoom })
-    }
-
-    checkRoomNameAndPassword = (roomName, roomPassword) => {
+    checkRoomNameAndPassword = () => {
         for (let i = 0; i < this.state.roomList.length; i++) {
-            if (this.state.roomList[i].name === roomName) {
-                if (this.state.roomList[i].password === roomPassword) {
-
+            if (this.state.roomList[i].name === this.state.newRoom.name) {
+                if (this.state.roomList[i].password === this.state.newRoom.password) {
+                    const redirect = true
+                    this.setState({ redirect })
                 }
             }
         }
     }
 
+    redirectToRoom = () => {
+        if (this.state.redirect === true) {
+            return <Redirect to={`/${this.state.newUser.userName}`} />
+        }
+    }
+
+    showNewRoomForm = () => {
+        const copyNewRoomForm = true
+        const copyExistingRoomForm = false
+        this.setState({ newRoomForm: copyNewRoomForm })
+        this.setState({ existingRoomForm: copyExistingRoomForm })
+    }
+
+    showExistingRoomForm = () => {
+        const copyNewRoomForm = false
+        const copyExistingRoomForm = true
+        this.setState({ newRoomForm: copyNewRoomForm })
+        this.setState({ existingRoomForm: copyExistingRoomForm })
+    }
+
     render() {
         return (
             <div>
-                <h1>{this.state.user.userName}</h1>
+                <h1>Welcome, {this.state.user.userName}</h1>
+                <h2>Would you like to:</h2>
+                <span>
+                    <button onClick={this.showNewRoomForm}>Create a New Server</button>
+                </span>
+                <span> or </span>
+                <span>
+                    <button onClick={this.showExistingRoomForm}>Log into an Existing Server</button>
+                </span>
+                {this.redirectToRoom()}
+                {this.state.newRoomForm ?
+                    <form onSubmit={this.addNewRoom}>
+                        <input
+                            name="name"
+                            type="text"
+                            placeholder="Name"
+                            autoComplete="off"
+                            value={this.state.newRoom.roomName}
+                            onChange={this.handleNewRoomChange}
+                        />
+                        <input
+                            name="password"
+                            type="password"
+                            placeholder="Password"
+                            autoComplete="off"
+                            value={this.state.newRoom.roomPassword}
+                            onChange={this.handleNewRoomChange}
+                        />
+                        <div>
+                            <input
+                                type="submit"
+                                value="submit"
+                            />
+                        </div>
+                    </form> : null}
+                {this.state.existingRoomForm ?
+                    <form onSubmit={this.goToRoom}>
+                        <input
+                            name="roomName"
+                            type="text"
+                            placeholder="Name"
+                            autoComplete="off"
+                            value={this.state.newRoom.roomName}
+                            onChange={this.handleNewRoomChange}
+                        />
+                        <input
+                            name="roomPassword"
+                            type="password"
+                            placeholder="Password"
+                            autoComplete="off"
+                            value={this.state.newRoom.roomPassword}
+                            onChange={this.handleNewRoomChange}
+                        />
+                        <div>
+                            <input
+                                type="submit"
+                                value="submit"
+                            />
+                        </div>
+                    </form> : null}
             </div>
         )
     }
