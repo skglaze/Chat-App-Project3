@@ -11,7 +11,7 @@ export default class HomePage extends Component {
     }
 
     getUserList = () => {
-        Axios.get('/api/users')
+        Axios.get('/api/users/users')
             .then((response) => {
                 this.setState({ userList: response.data })
             })
@@ -19,7 +19,7 @@ export default class HomePage extends Component {
 
     addNewUser = (event) => {
         event.preventDefault()
-        Axios.post('/api/users', this.state.newUser)
+        Axios.post('/api/users/users', this.state.newUser)
             .then(() => {
                 const plzRedirect = true
                 this.setState({ redirect: plzRedirect })

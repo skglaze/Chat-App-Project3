@@ -4,7 +4,7 @@ const roomRouter = express.Router()
 const roomApi = require('../models/room.js')
 const messageApi = require('../models/message')
 
-roomRouter.get('/', (req, res) => {
+roomRouter.get('/rooms/', (req, res) => {
     roomApi.getAllRooms().then((rooms) => {
         res.json(rooms)
     })
@@ -20,7 +20,7 @@ roomRouter.get('/messages/:roomId', (req, res) => {
         })
 })
 
-roomRouter.get('/rooms/:roomName', (req, res) => {
+roomRouter.get('/rooms/oneRoom/:roomName', (req, res) => {
     roomApi.getOneRoom(req.params.roomName).then((room) => {
         res.json(room)
     })

@@ -10,13 +10,16 @@ export default class Room extends Component {
         axios.get(`/api/rooms/rooms/oneRoom/${this.props.match.params.roomId}`)
             .then((response) => {
                 this.setState({ room: response.data[0] })
+                console.log(this.state.room)
             })
     }
 
     render() {
         return (
             <div>
-                Hey Bois
+                <h1>Hey Bois</h1>
+
+                {this.state.room.name}
             </div>
         )
     }

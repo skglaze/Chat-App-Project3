@@ -1,6 +1,6 @@
 const mongoose = require('./connection.js')
 
-global.sampleModel = [];
+global.sampleModel = []
 
 const MessageSchema = new mongoose.Schema({
     message: String,
