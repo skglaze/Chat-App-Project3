@@ -16,7 +16,8 @@ export default class UserPage extends Component {
     componentDidMount() {
         Axios.get(`/api/users/${this.props.match.params.userId}`)
             .then((response) => {
-                this.setState({ user: response.data })
+                console.log(response)
+                this.setState({ user: response.data[0] })
             })
         Axios.get('/api/rooms')
             .then((response) => {
@@ -54,7 +55,7 @@ export default class UserPage extends Component {
     render() {
         return (
             <div>
-                <h1>{this.props.match.params.userId}</h1>
+                <h1>{this.state.user.userName}</h1>
             </div>
         )
     }
