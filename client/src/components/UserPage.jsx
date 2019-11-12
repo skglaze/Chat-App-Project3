@@ -22,7 +22,6 @@ export default class UserPage extends Component {
     componentDidMount() {
         Axios.get(`/api/users/users/${this.props.match.params.userId}`)
             .then((response) => {
-                console.log(response)
                 this.setState({ user: response.data[0] })
             })
         Axios.get('/api/rooms/rooms')
@@ -33,7 +32,7 @@ export default class UserPage extends Component {
 
     addNewRoom = (event, newRoom) => {
         event.preventDefault()
-        Axios.post('/api/rooms/', this.state.newRoom)
+        Axios.post('/api/rooms/rooms/', this.state.newRoom)
     }
 
     handleNewRoomChange = (event) => {
@@ -51,8 +50,10 @@ export default class UserPage extends Component {
     checkRoomNameAndPassword = (event) => {
         event.preventDefault()
         for (let i = 0; i < this.state.roomList.length; i++) {
-            if (this.state.roomList[i].name === this.state.newRoom.name) {
-                if (this.state.roomList[i].password === this.state.newRoom.password) {
+            console.log(this.state.roomList[i].name)
+            console.log(this.state.existingRoom.name)
+            if (this.state.roomList[i].name === this.state.existingRoom.name) {
+                if (this.state.roomList[i].password === this.state.existingRoom.password) {
                     const redirect = true
                     this.setState({ redirect })
                 }
@@ -62,7 +63,7 @@ export default class UserPage extends Component {
 
     redirectToRoom = () => {
         if (this.state.redirect === true) {
-            return <Redirect to={`/rooms/${this.state.newRoom.name}`} />
+            return <Redirect to={`/rooms/${this.state.existingRoom.name}`} />
         }
     }
 
@@ -121,7 +122,7 @@ export default class UserPage extends Component {
                 {this.state.existingRoomForm ?
                     <form onSubmit={this.checkRoomNameAndPassword}>
                         <input
-                            name="roomName"
+                            name="name"
                             type="text"
                             placeholder="Name"
                             autoComplete="off"
@@ -129,7 +130,7 @@ export default class UserPage extends Component {
                             onChange={this.handleExistingRoomChange}
                         />
                         <input
-                            name="roomPassword"
+                            name="password"
                             type="password"
                             placeholder="Password"
                             autoComplete="off"
