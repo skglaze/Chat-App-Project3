@@ -54,7 +54,7 @@ export default class UserPage extends Component {
     render() {
         return (
             <div>
-                My Man
+                <h1>{this.props.match.params.userId}</h1>
             </div>
         )
     }
