@@ -20,10 +20,15 @@ export default class HomePage extends Component {
     addNewUser = (event) => {
         event.preventDefault()
         Axios.post('/api/users', this.state.newUser)
-        const redirect = !{ ...this.state.redirect }
-        this.setState({ redirect })
-        console.log(this.state.newUser.userName)
-        console.log(this.state.redirect)
+            .then(() => {
+                const plzRedirect = true
+                this.setState({ redirect: plzRedirect })
+                console.log(this.state.newUser.userName)
+                console.log(this.state.redirect)
+            })
+    }
+
+    redirectToUserPage = () => {
         if (this.state.redirect === true) {
             return <Redirect to={`/${this.state.newUser.userName}`} />
         }
@@ -50,6 +55,7 @@ export default class HomePage extends Component {
             <div>
                 <h1>Welcome to ChatUp! Get started below.</h1>
                 <h2>Create Username</h2>
+                {this.redirectToUserPage()}
                 <form onSubmit={this.addNewUser}>
                     <input
                         name="userName"
