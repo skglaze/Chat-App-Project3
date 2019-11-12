@@ -30,9 +30,13 @@ export default class UserPage extends Component {
             })
     }
 
-    addNewRoom = (event, newRoom) => {
+    addNewRoom = (event) => {
         event.preventDefault()
         Axios.post('/api/rooms/rooms/', this.state.newRoom)
+            .then((response) => {
+                const redirect = true
+                this.setState({ redirect })
+            })
     }
 
     handleNewRoomChange = (event) => {
