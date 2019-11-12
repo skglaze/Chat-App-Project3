@@ -12,8 +12,8 @@ const getAllUsers = () => {
     return UserCollection.find({})
 }
 
-const getOneUser = (id) => {
-    return UserCollection.findById(id)
+const getOneUser = (userName) => {
+    return UserCollection.find({ userName })
 }
 
 const addNewUser = (newUserData) => {

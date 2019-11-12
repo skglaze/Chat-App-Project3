@@ -9,8 +9,8 @@ userRouter.get('/', (req, res) => {
     })
 })
 
-userRouter.get('/:userId', (req, res) => {
-    userApi.getOneUser(req.params.userId).then((user) => {
+userRouter.get('/:userName', (req, res) => {
+    userApi.getOneUser(req.params.userName).then((user) => {
         res.json(user)
     })
 })
