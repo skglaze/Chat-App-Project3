@@ -3,31 +3,31 @@ const userRouter = express.Router()
 
 const userApi = require('../models/user.js')
 
-userRouter.get('/', (req, res) => {
+userRouter.get('/users/', (req, res) => {
     userApi.getAllUsers().then((users) => {
         res.json(users)
     })
 })
 
-userRouter.get('/:userName', (req, res) => {
+userRouter.get('/users/:userName', (req, res) => {
     userApi.getOneUser(req.params.userName).then((user) => {
         res.json(user)
     })
 })
 
-userRouter.post('/', (req, res) => {
+userRouter.post('/users/', (req, res) => {
     userApi.addNewUser(req.body).then((newUser) => {
         res.json(newUser)
     })
 })
 
-userRouter.put('/:userId', (req, res) => {
+userRouter.put('/users/:userId', (req, res) => {
     userApi.updateUser(req.params.userId, req.body).then((updatedUser) => {
         res.json(updatedUser)
     })
 })
 
-userRouter.delete('/:userId', (req, res) => {
+userRouter.delete('/users/:userId', (req, res) => {
     userApi.deleteUser(req.params.userId)
         .then((deletedUser) => {
             res.json(deletedUser)

@@ -20,25 +20,25 @@ roomRouter.get('/messages/:roomId', (req, res) => {
         })
 })
 
-roomRouter.get('/:roomId', (req, res) => {
-    roomApi.getOneRoom(req.params.roomId).then((room) => {
+roomRouter.get('/rooms/:roomName', (req, res) => {
+    roomApi.getOneRoom(req.params.roomName).then((room) => {
         res.json(room)
     })
 })
 
-roomRouter.post('/', (req, res) => {
+roomRouter.post('/rooms/', (req, res) => {
     roomApi.addNewRoom(req.body).then((newRoom) => {
         res.json(newRoom)
     })
 })
 
-roomRouter.put('/:roomId', (req, res) => {
+roomRouter.put('/rooms/:roomId', (req, res) => {
     roomApi.updateRoom(req.params.roomId, req.body).then((updatedRoom) => {
         res.json(updatedRoom)
     })
 })
 
-roomRouter.delete('/:roomId', (req, res) => {
+roomRouter.delete('/rooms/:roomId', (req, res) => {
     roomApi.deleteRoom(req.params.roomId)
         .then((deletedRoom) => {
             res.json(deletedRoom)

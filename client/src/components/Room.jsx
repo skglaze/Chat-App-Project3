@@ -7,7 +7,7 @@ export default class Room extends Component {
     }
 
     componentDidMount() {
-        axios.get(`/api/rooms/oneRoom/${this.props.match.params.roomId}`)
+        axios.get(`/api/rooms/rooms/oneRoom/${this.props.match.params.roomId}`)
             .then((response) => {
                 this.setState({ room: response.data[0] })
             })

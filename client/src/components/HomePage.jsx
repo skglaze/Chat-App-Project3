@@ -28,7 +28,7 @@ export default class HomePage extends Component {
 
     redirectToUserPage = () => {
         if (this.state.redirect === true) {
-            return <Redirect to={`/${this.state.newUser.userName}`} />
+            return <Redirect to={`/users/${this.state.newUser.userName}`} />
         }
     }
 

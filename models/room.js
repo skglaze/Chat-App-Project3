@@ -13,8 +13,8 @@ const getAllRooms = () => {
     return RoomCollection.find({})
 }
 
-const getOneRoom = (id) => {
-    return RoomCollection.findById(id)
+const getOneRoom = (name) => {
+    return RoomCollection.find({ name })
 }
 
 const addNewRoom = (newRoomData) => {

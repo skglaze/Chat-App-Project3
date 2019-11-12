@@ -11,17 +11,21 @@ export default class UserPage extends Component {
             name: '',
             password: ''
         },
+        existingRoom: {
+            name: '',
+            password: '',
+        },
         roomList: [],
         redirect: false
     }
 
     componentDidMount() {
-        Axios.get(`/api/users/${this.props.match.params.userId}`)
+        Axios.get(`/api/users/users/${this.props.match.params.userId}`)
             .then((response) => {
                 console.log(response)
                 this.setState({ user: response.data[0] })
             })
-        Axios.get('/api/rooms')
+        Axios.get('/api/rooms/rooms')
             .then((response) => {
                 this.setState({ roomList: response.data })
             })
@@ -38,7 +42,14 @@ export default class UserPage extends Component {
         this.setState({ newRoom: copyNewRoom })
     }
 
-    checkRoomNameAndPassword = () => {
+    handleExistingRoomChange = (event) => {
+        const copyExistingRoom = { ...this.state.existingRoom }
+        copyExistingRoom[event.target.name] = event.target.value
+        this.setState({ existingRoom: copyExistingRoom })
+    }
+
+    checkRoomNameAndPassword = (event) => {
+        event.preventDefault()
         for (let i = 0; i < this.state.roomList.length; i++) {
             if (this.state.roomList[i].name === this.state.newRoom.name) {
                 if (this.state.roomList[i].password === this.state.newRoom.password) {
@@ -51,7 +62,7 @@ export default class UserPage extends Component {
 
     redirectToRoom = () => {
         if (this.state.redirect === true) {
-            return <Redirect to={`/${this.state.newUser.userName}`} />
+            return <Redirect to={`/rooms/${this.state.newRoom.name}`} />
         }
     }
 
@@ -108,22 +119,22 @@ export default class UserPage extends Component {
                         </div>
                     </form> : null}
                 {this.state.existingRoomForm ?
-                    <form onSubmit={this.goToRoom}>
+                    <form onSubmit={this.checkRoomNameAndPassword}>
                         <input
                             name="roomName"
                             type="text"
                             placeholder="Name"
                             autoComplete="off"
-                            value={this.state.newRoom.roomName}
-                            onChange={this.handleNewRoomChange}
+                            value={this.state.existingRoom.roomName}
+                            onChange={this.handleExistingRoomChange}
                         />
                         <input
                             name="roomPassword"
                             type="password"
                             placeholder="Password"
                             autoComplete="off"
-                            value={this.state.newRoom.roomPassword}
-                            onChange={this.handleNewRoomChange}
+                            value={this.state.existingRoom.roomPassword}
+                            onChange={this.handleExistingRoomChange}
                         />
                         <div>
                             <input
