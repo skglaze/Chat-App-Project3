@@ -6,3 +6,11 @@ The target user is someone who wants to make private chat rooms with friends to 
 
 [Click here for the Trello Board](https://trello.com/b/u6bxrVHg/project-3)
 [click here for the deployed app](https://sglaze-project3.herokuapp.com/)
+
+ERD
+
+(https://git.generalassemb.ly/skglaze/project-3/blob/master/images/ERD.jpeg)
+
+Wireframe
+
+(https://git.generalassemb.ly/skglaze/project-3/blob/master/images/Wireframe.jpeg)
