@@ -84,6 +84,7 @@ export default class Room extends Component {
                         onChange={this.handleNewMessageChange}
                     />
                     <input
+                        id="submit"
                         type="submit"
                         value="submit"
                     />

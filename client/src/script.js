@@ -7,4 +7,7 @@ function updateScroll() {
     element.scrollTop = elementHeight
     console.log(elementHeight)
 }
-window.onload = updateScroll;
+
+if (document.getElementById("messages")) {
+    window.onload = updateScroll
+}

@@ -58,6 +58,10 @@ input {
 #submit {
   color: white;
   background: rgb(34, 34, 34);
+  border: none;
+  height: 30px;
+  width: 80px;
+  cursor: pointer;
 }
 /* @keyframes App-logo-spin {
   from {
