@@ -65,8 +65,9 @@ export default class Room extends Component {
                 <div id="messages">
                     {messageElements}
                 </div>
-                <form onSubmit={this.addNewMessage}>
+                <form id="" onSubmit={this.addNewMessage}>
                     <input
+                        id="text"
                         name="message"
                         type="text"
                         placeholder="Message..."
@@ -82,12 +83,10 @@ export default class Room extends Component {
                         value={this.state.room._id}
                         onChange={this.handleNewMessageChange}
                     />
-                    <div>
-                        <input
-                            type="submit"
-                            value="submit"
-                        />
-                    </div>
+                    <input
+                        type="submit"
+                        value="submit"
+                    />
                 </form>
             </div>
         )
