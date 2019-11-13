@@ -7,7 +7,7 @@ const MessageSchema = new mongoose.Schema({
     isLiked: Boolean,
     numberLikes: Number,
     userId: mongoose.ObjectId,
-    roomId: mongoose.ObjectId
+    roomId: String
 })
 
 const MessageCollection = mongoose.model('Message', MessageSchema)

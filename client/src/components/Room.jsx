@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import io from 'socket.io-client'
 import '../App.css'
+import '../script.js'
 
 let socket = io('http://localhost:4000/')
 
@@ -9,7 +10,10 @@ export default class Room extends Component {
     state = {
         room: {},
         messages: [],
-        newMessage: ''
+        newMessage: {
+            message: '',
+            roomId: '',
+        }
     }
 
     componentDidMount() {
@@ -39,6 +43,13 @@ export default class Room extends Component {
         this.setState({ newMessage: copyNewMessage })
     }
 
+    addNewMessage = (event) => {
+        event.preventDefault()
+        axios.post('/api/messages/messages', this.state.newMessage)
+        console.log(this.state.newMessage)
+        console.log(this.state.room._id)
+    }
+
     render() {
         const messageElements = this.state.messages.map((message) => {
             return (
@@ -57,11 +68,19 @@ export default class Room extends Component {
                 <form onSubmit={this.addNewMessage}>
                     <input
                         name="message"
-                        type="text box"
-                        placeholder="Write Here..."
+                        type="text"
+                        placeholder="Message..."
                         autoComplete="off"
-                        value={this.state.newUser.userName}
-                        onChange={this.handleNewUserChange}
+                        value={this.state.newMessage.message}
+                        onChange={this.handleNewMessageChange}
+                    />
+                    <input
+                        name="roomId"
+                        type="hidden"
+                        placeholder="roomId"
+                        autoComplete="off"
+                        value={this.state.room._id}
+                        onChange={this.handleNewMessageChange}
                     />
                     <div>
                         <input
