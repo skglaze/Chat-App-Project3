@@ -35,7 +35,8 @@ export default class Room extends Component {
         const messageElements = this.state.messages.map((message) => {
             return (
                 <div>
-                    <h1>{message.message}</h1>
+                    <h3>{message.userName}</h3>
+                    <p>{message.message}</p>
                 </div >
             )
         })
