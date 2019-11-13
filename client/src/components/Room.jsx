@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import io from 'socket.io-client'
+import '../App.css'
 
 let socket = io('http://localhost:4000/')
 
@@ -34,8 +35,7 @@ export default class Room extends Component {
     render() {
         const messageElements = this.state.messages.map((message) => {
             return (
-                <div>
-                    <h3>{message.userName}</h3>
+                <div id="message">
                     <p>{message.message}</p>
                 </div >
             )
@@ -43,7 +43,9 @@ export default class Room extends Component {
         return (
             <div>
                 <h1>{this.state.room.name}</h1>
-                {messageElements}
+                <div id="messages">
+                    {messageElements}
+                </div>
             </div>
         )
     }
