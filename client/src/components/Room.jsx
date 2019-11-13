@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import io from 'socket.io-client'
+// import io from 'socket.io-client'
 import '../App.css'
 import '../script.js'
 
-let socket = io('http://localhost:4000/')
+// let socket = io('http://localhost:4000/')
 
 export default class Room extends Component {
     state = {
@@ -27,14 +27,14 @@ export default class Room extends Component {
                 this.setState({ messages: response.data })
                 console.log(this.state.messages)
             })
-        socket.on('new-message', (event) => {
-            if (this.props.match.params.id !== event.data.roomId) {
-                return
-            }
-            const previousState = { ...this.state }
-            previousState.messages.push(event.data)
-            this.setState(previousState)
-        })
+        // socket.on('new-message', (event) => {
+        //     if (this.props.match.params.id !== event.data.roomId) {
+        //         return
+        //     }
+        //     const previousState = { ...this.state }
+        //     previousState.messages.push(event.data)
+        //     this.setState(previousState)
+        // })
     }
 
     handleNewMessageChange = (event) => {

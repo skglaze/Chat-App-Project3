@@ -16,7 +16,8 @@ export default class UserPage extends Component {
             password: '',
         },
         roomList: [],
-        redirect: false
+        redirectToExistingRoom: false,
+        redirectToNewRoom: false,
     }
 
     componentDidMount() {
@@ -34,8 +35,8 @@ export default class UserPage extends Component {
         event.preventDefault()
         Axios.post('/api/rooms/rooms/', this.state.newRoom)
             .then((response) => {
-                const redirect = true
-                this.setState({ redirect })
+                const redirectToNewRoom = true
+                this.setState({ redirectToNewRoom })
             })
     }
 
@@ -58,16 +59,22 @@ export default class UserPage extends Component {
             console.log(this.state.existingRoom.name)
             if (this.state.roomList[i].name === this.state.existingRoom.name) {
                 if (this.state.roomList[i].password === this.state.existingRoom.password) {
-                    const redirect = true
-                    this.setState({ redirect })
+                    const redirectToExistingRoom = true
+                    this.setState({ redirectToExistingRoom })
                 }
             }
         }
     }
 
-    redirectToRoom = () => {
-        if (this.state.redirect === true) {
+    redirectToExistingRoom = () => {
+        if (this.state.redirectToExistingRoom === true) {
             return <Redirect to={`/rooms/${this.state.existingRoom.name}`} />
+        }
+    }
+
+    redirectToNewRoom = () => {
+        if (this.state.redirectToNewRoom === true) {
+            return <Redirect to={`/rooms/${this.state.newRoom.name}`} />
         }
     }
 
@@ -97,7 +104,8 @@ export default class UserPage extends Component {
                 <span>
                     <button onClick={this.showExistingRoomForm}>Log into an Existing Server</button>
                 </span>
-                {this.redirectToRoom()}
+                {this.redirectToNewRoom()}
+                {this.redirectToExistingRoom()}
                 {this.state.newRoomForm ?
                     <form onSubmit={this.addNewRoom}>
                         <input

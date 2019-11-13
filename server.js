@@ -1,12 +1,12 @@
 const express = require('express')
 const app = express()
-const io = require('socket.io')(4000)
+// const io = require('socket.io')(4000)
 
-io.on('connection', (socket) => {
-    socket.on('send-message', message => {
-        io.emit('new-message', postMessage)
-    })
-})
+// io.on('connection', (socket) => {
+//     socket.on('send-message', message => {
+//         io.emit('new-message', postMessage)
+//     })
+// })
 
 const { userRouter } = require('./controllers/user.js')
 const { roomRouter } = require('./controllers/room')
