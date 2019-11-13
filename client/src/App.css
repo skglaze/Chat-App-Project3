@@ -1,8 +1,12 @@
 .App {
   text-align: center;
+  background-color: rgb(8, 8, 8);
+  color: rgb(226, 225, 225);
+  height: 100vh;
+
 }
 
-.App-logo {
+/* .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
   pointer-events: none;
@@ -17,15 +21,16 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-
+} */
+/* 
 .App-link {
   color: #61dafb;
-}
+} */
 
 #messages {
-  border: black solid;
-  color: blue;
+  background-color: rgb(29, 29, 29);
+  border-radius: 10px;
+  color: rgb(202, 201, 201);
   margin: 0 auto;
   width: 800px;
   height: 500px;
@@ -33,12 +38,14 @@
 #message {
   text-align: left;
   margin-left: 10px;
+  margin-right: 10px;
+  border-bottom: rgb(63, 63, 63) solid 1px;
 }
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
+} */
