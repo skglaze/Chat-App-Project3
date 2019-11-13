@@ -4,10 +4,6 @@ import io from 'socket.io-client'
 
 let socket = io('http://localhost:4000/')
 
-let socketSendChat = (value) => {
-
-}
-
 export default class Room extends Component {
     state = {
         room: {},
@@ -20,7 +16,7 @@ export default class Room extends Component {
                 this.setState({ room: response.data[0] })
                 console.log(this.state.room)
             })
-        axios.get(`/api/messages/messages/${this.props.match.params.roomId}`)
+        axios.get(`/api/rooms/messages/${this.props.match.params.roomId}`)
             .then((response) => {
                 this.setState({ messages: response.data })
                 console.log(this.state.messages)
@@ -36,12 +32,19 @@ export default class Room extends Component {
     }
 
     render() {
+        const messageElements = this.state.messages.map((message) => {
+            return (
+                <div>
+                    <h1>{message.message}</h1>
+                </div >
+            )
+        })
         return (
             <div>
                 <h1>Hey Bois</h1>
 
                 {this.state.room.name}
-                {this.state.messages}
+                {messageElements}
             </div>
         )
     }

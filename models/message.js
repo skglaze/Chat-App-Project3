@@ -16,8 +16,8 @@ const getAllMessages = () => {
     return MessageCollection.find({})
 }
 
-const getAllMessagesByRoomId = (roomId) => {
-    return MessageCollection.find({ roomId: roomId })
+const getAllMessagesByRoomName = (roomName) => {
+    return MessageCollection.find({ roomName })
 }
 
 const getOneMessage = (id) => {
@@ -38,7 +38,7 @@ const deleteMessage = (id) => {
 
 module.exports = {
     getAllMessages,
-    getAllMessagesByRoomId,
+    getAllMessagesByRoomName,
     getOneMessage,
     addNewMessage,
     updateMessage,

@@ -11,12 +11,9 @@ roomRouter.get('/rooms/', (req, res) => {
 })
 
 roomRouter.get('/messages/:roomId', (req, res) => {
-    roomApi.getOneRoom(req.params.roomId)
-        .then((room) => {
-            messageApi.getAllMessagesByRoomId(req.params.roomId)
-                .then((roomMessages) => {
-                    res.json(roomMessages)
-                })
+    messageApi.getAllMessagesByRoomName(req.params.roomName)
+        .then((roomMessages) => {
+            res.json(roomMessages)
         })
 })
 
