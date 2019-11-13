@@ -8,7 +8,8 @@ let socket = io('http://localhost:4000/')
 export default class Room extends Component {
     state = {
         room: {},
-        messages: []
+        messages: [],
+        newMessage: ''
     }
 
     componentDidMount() {
@@ -32,6 +33,12 @@ export default class Room extends Component {
         })
     }
 
+    handleNewMessageChange = (event) => {
+        const copyNewMessage = { ...this.state.newMessage }
+        copyNewMessage[event.target.name] = event.target.value
+        this.setState({ newMessage: copyNewMessage })
+    }
+
     render() {
         const messageElements = this.state.messages.map((message) => {
             return (
@@ -47,6 +54,22 @@ export default class Room extends Component {
                 <div id="messages">
                     {messageElements}
                 </div>
+                <form onSubmit={this.addNewMessage}>
+                    <input
+                        name="message"
+                        type="text box"
+                        placeholder="Write Here..."
+                        autoComplete="off"
+                        value={this.state.newUser.userName}
+                        onChange={this.handleNewUserChange}
+                    />
+                    <div>
+                        <input
+                            type="submit"
+                            value="submit"
+                        />
+                    </div>
+                </form>
             </div>
         )
     }
