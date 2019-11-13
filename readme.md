@@ -9,8 +9,9 @@ The target user is someone who wants to make private chat rooms with friends to 
 
 ERD
 
-(https://git.generalassemb.ly/skglaze/project-3/blob/master/images/ERD.jpeg)
+![ERD](/images/ERD.jpeg)
 
 Wireframe
 
-(https://git.generalassemb.ly/skglaze/project-3/blob/master/images/Wireframe.jpeg)
+![Wireframe](/images/Wireframe.jpeg)
+
