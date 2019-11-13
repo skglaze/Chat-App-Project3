@@ -5,12 +5,17 @@ global.sampleModel = [];
 const RoomSchema = new mongoose.Schema({
     name: String,
     password: String,
+    usersAssociated: [],
 })
 
 const RoomCollection = mongoose.model('Room', RoomSchema)
 
 const getAllRooms = () => {
     return RoomCollection.find({})
+}
+
+const getAllRoomsByUserName = (userName) => {
+    return RoomCollection.find({ userName })
 }
 
 const getOneRoom = (name) => {
@@ -34,5 +39,6 @@ module.exports = {
     getOneRoom,
     addNewRoom,
     updateRoom,
-    deleteRoom
+    deleteRoom,
+    getAllRoomsByUserName
 }

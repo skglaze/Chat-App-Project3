@@ -2,6 +2,7 @@ const express = require('express')
 const userRouter = express.Router()
 
 const userApi = require('../models/user.js')
+const roomApi = require('../models/room.js')
 
 userRouter.get('/users/', (req, res) => {
     userApi.getAllUsers().then((users) => {
@@ -13,6 +14,13 @@ userRouter.get('/users/:userName', (req, res) => {
     userApi.getOneUser(req.params.userName).then((user) => {
         res.json(user)
     })
+})
+
+userRouter.get('/users/rooms/:userName', (req, res) => {
+    messageApi.getAllMessagesByRoomName(req.params.roomName)
+        .then((roomMessages) => {
+            res.json(roomMessages)
+        })
 })
 
 userRouter.post('/users/', (req, res) => {

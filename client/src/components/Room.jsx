@@ -41,9 +41,7 @@ export default class Room extends Component {
         })
         return (
             <div>
-                <h1>Hey Bois</h1>
-
-                {this.state.room.name}
+                <h1>{this.state.room.name}</h1>
                 {messageElements}
             </div>
         )
